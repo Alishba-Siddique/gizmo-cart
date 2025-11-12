@@ -1,74 +1,123 @@
-<div align="center">
-  <h1><img src="https://GizmoCartshop.in/favicon.ico" width="20" height="20" alt="GizmoCart Favicon">
-   GizmoCart</h1>
-  <p>
-    An open-source multi-vendor e-commerce platform built with Next.js and Tailwind CSS.
-  </p>
-  <p>
-    <a href="https://github.com/GreatStackDev/GizmoCart/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/GreatStackDev/GizmoCart?style=for-the-badge" alt="License"></a>
-    <a href="https://github.com/GreatStackDev/GizmoCart/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" alt="PRs Welcome"></a>
-    <a href="https://github.com/GreatStackDev/GizmoCart/issues"><img src="https://img.shields.io/github/issues/GreatStackDev/GizmoCart?style=for-the-badge" alt="GitHub issues"></a>
-  </p>
-</div>
+# Gizmo Cart
 
----
-
-## 📖 Table of Contents
-
-- [✨ Features](#-features)
-- [🛠️ Tech Stack](#-tech-stack)
-- [🚀 Getting Started](#-getting-started)
-- [🤝 Contributing](#-contributing)
-- [📜 License](#-license)
-
----
+Gizmo Cart is a modern, full-stack, multi-vendor e-commerce platform built with Next.js, Prisma, and Tailwind CSS. It allows vendors to create their own stores, manage products, and handle orders, while providing a seamless shopping experience for customers.
 
 ## Features
 
-- **Multi-Vendor Architecture:** Allows multiple vendors to register, manage their own products, and sell on a single platform.
-- **Customer-Facing Storefront:** A beautiful and responsive user interface for customers to browse and purchase products.
-- **Vendor Dashboards:** Dedicated dashboards for vendors to manage products, view sales analytics, and track orders.
-- **Admin Panel:** A comprehensive dashboard for platform administrators to oversee vendors, products, and commissions.
+### For Customers
+- **Browse Products:** Explore products by category or search for specific items.
+- **Shop from Multiple Vendors:** Purchase products from different stores in a single platform.
+- **Shopping Cart:** Add and manage products in the cart.
+- **Seamless Checkout:** Place orders with ease using multiple payment methods.
+- **Order Tracking:** View order history and track the status of current orders.
+- **Product Ratings:** Rate and review purchased products.
 
-## 🛠️ Tech Stack <a name="-tech-stack"></a>
+### For Store Owners (Vendors)
+- **Store Management:** Create and customize your own online store.
+- **Product Management:** Add, update, and manage your product listings.
+- **Order Fulfillment:** View and manage incoming orders for your store.
+- **Dashboard:** Get insights into your store's performance.
 
-- **Framework:** Next.js
-- **Styling:** Tailwind CSS
-- **UI Components:** Lucide React for icons
-- **State Management:** Redux Toolkit
+### For Administrators
+- **Vendor Approval:** Approve and manage new vendor applications.
+- **Store Management:** Oversee all stores on the platform.
+- **Coupon Management:** Create and manage promotional coupons.
+- **Platform Analytics:** Monitor the overall health and performance of the marketplace.
 
-## 🚀 Getting Started <a name="-getting-started"></a>
+## Tech Stack
 
-First, install the dependencies. We recommend using `npm` for this project.
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **Database:** [PostgreSQL](https://www.postgresql.org/) (with Neon)
+- **Authentication:** [Clerk](https://clerk.com/)
+- **Background Jobs:** [Inngest](https://www.inngest.com/)
+- **State Management:** [Redux Toolkit](https://redux-toolkit.js.org/)
+- **UI Components:** [Lucide React](https://lucide.dev/guide/packages/lucide-react) (for icons), [Recharts](https://recharts.org/) (for charts)
 
-```bash
-npm install
-```
+## Getting Started
 
-Then, run the development server:
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Node.js](https://nodejs.org/en/) (v18 or later)
+- [npm](https://www.npmjs.com/)
+- A [PostgreSQL](https://www.postgresql.org/download/) database. You can use a free Neon database from [here](https://neon.tech/).
 
-You can start editing the page by modifying `app/(public)/page.js`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Outfit](https://vercel.com/font), a new font family for Vercel.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/gizmo-cart.git
+    cd gizmo-cart
+    ```
 
----
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
+3.  **Set up environment variables:**
+    Create a `.env` file in the root of the project by copying the example file:
+    ```bash
+    cp .env.example .env
+    ```
+    Then, add the following required environment variables to your `.env` file:
 
-To learn more about Next.js, take a look at the following resources:
+    ```env
+    # Database
+    DATABASE_URL="your_postgresql_connection_string"
+    DIRECT_URL="your_postgresql_direct_connection_string" # Required for Prisma migrations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    # Clerk Authentication
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
+    CLERK_SECRET_KEY="your_clerk_secret_key"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    # Inngest
+    INNGEST_EVENT_KEY="your_inngest_event_key"
+
+    # Other
+    NEXT_PUBLIC_CURRENCY_SYMBOL="$"
+    ```
+
+4.  **Sync the database schema:**
+    Run the following command to sync your Prisma schema with your database:
+    ```bash
+    npx prisma db push
+    ```
+
+### Running the Application
+
+-   **To run the development server:**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+-   **To create a production build:**
+    ```bash
+    npm run build
+    ```
+
+-   **To start the production server:**
+    ```bash
+    npm run start
+    ```
+
+## Project Structure
+
+The project follows the Next.js App Router structure:
+
+-   `app/(public)`: Routes accessible to all users (e.g., home, product pages, cart).
+-   `app/admin`: Routes and components for the admin dashboard.
+-   `app/store`: Routes and components for the vendor/store owner dashboard.
+-   `app/api`: API routes, including the Inngest event handler.
+-   `components`: Shared and reusable React components.
+-   `inngest`: Configuration and functions for Inngest background jobs.
+-   `lib`: Utility functions, Redux store, and Prisma client instance.
+-   `prisma`: Contains the database schema (`schema.prisma`).
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
