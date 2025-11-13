@@ -1,7 +1,6 @@
 'use client';
 import { dummyAdminDashboardData } from '@/assets/assets';
 import Loading from '@/components/Loading';
-import OrdersAreaChart from '@/components/OrdersAreaChart';
 import {
   CircleDollarSignIcon,
   ShoppingBasketIcon,
@@ -9,6 +8,12 @@ import {
   TagsIcon,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+
+const OrdersAreaChart = dynamic(() => import('@/components/OrdersAreaChart'), {
+  ssr: false,
+  loading: () => <p className="text-center text-zinc-400">Loading chart...</p>,
+});
 
 export default function AdminDashboard() {
   const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$';
