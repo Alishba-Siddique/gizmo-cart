@@ -1,5 +1,5 @@
 'use client';
-import { dummyAdminDashboardData } from '@/assets/assets';
+import { dummyAdminDashboardData } from '../../assets/assets';
 import Loading from '@/components/Loading';
 import {
   CircleDollarSignIcon,

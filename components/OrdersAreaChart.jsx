@@ -9,7 +9,6 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-
 export default function OrdersAreaChart({ allOrders }) {
   // Group orders by date
   const ordersPerDay = allOrders.reduce((acc, order) => {
